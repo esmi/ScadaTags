@@ -1,0 +1,15 @@
+{
+    "name": "esmi/scadatags",
+    "description": "A libray to build a array for scadaTagJs/web scada script.",
+    "type": "library",
+    "require": {
+        "php": "^7.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "esmi",
+            "email": "evansmile@gmail.com"
+        }
+    ]
+}
