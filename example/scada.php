@@ -58,7 +58,13 @@ class scada extends scadaTags {
               "U2305", "U2306", "U2307", "U2308",
             ]
         ],
-        'virtual' => []
+        //'virtual' => []
+        'icon_type' => [
+           'GRY_FAN'  => [ "images/Fan2-g.png", "images/Fan2-r.gif", "images/Fan-y.gif"],
+           'GRY_MOTOR'=> [ "images/motor_greenA.jpg", "images/motor_redA.jpg", "images/motor_yellowA.jpg"],
+           'GY' => [ "images/light_green3.jpg", "images/light_yellow3.gif"],
+           'GRY'=> [ "images/light_green3.jpg", "images/light_red3.jpg", "images/light_yellow3.jpg"]
+        ]
     ];
 
     function __construct( $dataProvider) {
@@ -105,20 +111,20 @@ class scada extends scadaTags {
     //     return $this->tags['image_display'];
     // }
 
-    function iconSwitch($color, $iconType) {
-        switch( $iconType) {
-            case 'GRY_FAN':
-                return [ "images/Fan2-g.png", "images/Fan2-r.gif", "images/Fan-y.gif"][$color];
-            case 'GRY_MOTOR':
-                return [ "images/motor_greenA.jpg", "images/motor_redA.jpg", "images/motor_yellowA.jpg"][$color];
-            case 'GY':
-                return [ "images/light_green3.jpg", "images/light_yellow3.gif"][$color];
-            case 'GRY':
-                return [ "images/light_green3.jpg", "images/light_red3.jpg", "images/light_yellow3.jpg"][$color];
-            default:
-                return [ "images/light_green3.jpg", "images/light_red3.jpg", "images/light_yellow3.jpg"][$color];
-        }
-    }
+    // function iconSwitch($color, $iconType) {
+    //     switch( $iconType) {
+    //         case 'GRY_FAN':
+    //             return [ "images/Fan2-g.png", "images/Fan2-r.gif", "images/Fan-y.gif"][$color];
+    //         case 'GRY_MOTOR':
+    //             return [ "images/motor_greenA.jpg", "images/motor_redA.jpg", "images/motor_yellowA.jpg"][$color];
+    //         case 'GY':
+    //             return [ "images/light_green3.jpg", "images/light_yellow3.gif"][$color];
+    //         case 'GRY':
+    //             return [ "images/light_green3.jpg", "images/light_red3.jpg", "images/light_yellow3.jpg"][$color];
+    //         default:
+    //             return [ "images/light_green3.jpg", "images/light_red3.jpg", "images/light_yellow3.jpg"][$color];
+    //     }
+    // }
 
     function getTagRow( $tag, $rows) {
       if ($this->isEquipName()) {
@@ -167,21 +173,21 @@ class scada extends scadaTags {
       return $p3;
     }
 
-    function scadaTags() {
-        $rows1 = parent::displayTags();
-        $rows2 = $this->imageDisplayTags();
-        $rows =[];
-        foreach ( $rows2 as $key =>$r) {
-            $r['id'] = $key;
-            array_push( $rows, $r);
-        }
-        foreach ( $rows1 as $key =>$r) {
-            $r['id'] = $key;
-            array_push( $rows, $r);
-        }
-
-        return $rows;
-    }
+    // function scadaTags() {
+    //     $rows1 = parent::displayTags();
+    //     $rows2 = $this->imageDisplayTags();
+    //     $rows =[];
+    //     foreach ( $rows2 as $key =>$r) {
+    //         $r['id'] = $key;
+    //         array_push( $rows, $r);
+    //     }
+    //     foreach ( $rows1 as $key =>$r) {
+    //         $r['id'] = $key;
+    //         array_push( $rows, $r);
+    //     }
+    //
+    //     return $rows;
+    // }
 }
 // $provider = new provider();
 // $scada = new scada($provider);

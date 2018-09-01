@@ -16,7 +16,6 @@ class ScadaTags extends ScadaBase {
 
 	protected $virtual_tags = [];
 
-
 	function __construct( $dataClass ,$tags) {
 
 		parent::__construct( $dataClass, $tags['EquipName']);
@@ -49,7 +48,20 @@ class ScadaTags extends ScadaBase {
 	}
 	// return all tags information:
 	function scadaTags() {
-		return $this->bindDisplayTags($this->dataTags());
+		//return $this->bindDisplayTags($this->dataTags());
+      $rows1 = $this->displayTags();
+      $rows2 = $this->imageDisplayTags();
+      $rows =[];
+      foreach ( $rows2 as $key =>$r) {
+          $r['id'] = $key;
+          array_push( $rows, $r);
+      }
+      foreach ( $rows1 as $key =>$r) {
+          $r['id'] = $key;
+          array_push( $rows, $r);
+      }
+      return $rows;
+
 	}
 
 	function dataTags() {
@@ -137,6 +149,17 @@ class ScadaTags extends ScadaBase {
 		else {
 			return "tags_'icon_type'_not_defined!";
 		}
+	}
+	function getTagRow( $tag, $rows) {
+		if ($this->isEquipName()) {
+			//echo "tag: $tag \r\n";
+			foreach ($rows as $r) {
+					//tag_field_name
+					if ($r[$this->tags['EquipName']] == $tag)
+							return $r;
+			}
+		}
+		return [];
 	}
 
 }

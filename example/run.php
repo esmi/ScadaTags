@@ -7,4 +7,5 @@ $provider = new provider();
 $scada = new scada($provider);
 //$scada = new scada(null);
 $d = $scada->scadaTags();
+var_dump($d);
  ?>
