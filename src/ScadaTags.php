@@ -6,7 +6,8 @@ class ScadaTags extends ScadaBase {
 	protected $display_tags;	// = $js_map
 
 	protected $image_data = null;
-	protected $image_tags = null;
+	//protected $image_tags = null;
+	protected $image_display = null;
 
 	protected $icon_type = null;
 
@@ -16,9 +17,12 @@ class ScadaTags extends ScadaBase {
 	protected $virtual_tags = [];
 
 
-	function __construct( $db, $dataClass ,$tags) {
+	function __construct( $dataClass ,$tags) {
 
-		parent::__construct( $db, $dataClass, $tags['EquipName']);
+		parent::__construct( $dataClass, $tags['EquipName']);
+		if (!$this->isEquipName()) {
+				printf ("Your EquipName(%s) is inValid\n", $this->equipName());
+		}
 		$this->setTags( $tags );
 	}
 
@@ -30,8 +34,8 @@ class ScadaTags extends ScadaBase {
 		if (isset($tags['image_data']))
 			$this->image_data = $tags['image_data'];
 
-		if (isset($tags['image_tags']))
-			$this->image_tags = $tags['image_display'];
+		if (isset($tags['image_display']))
+			$this->image_display = $tags['image_display'];
 
 		if (isset($tags['icon_type']))
 			$this->icon_type = $tags['icon_type'];
@@ -49,6 +53,9 @@ class ScadaTags extends ScadaBase {
 	}
 
 	function dataTags() {
+		if (!$this->isEquipName()) {
+			return [printf("you equipName(%s) is invalid", $this->equipName())];
+		}
 
 		$rows=[];
 
@@ -92,7 +99,6 @@ class ScadaTags extends ScadaBase {
 		if ($this->image_display && $this->image_data) {
 			$rows = $this->get();
 			$points = $this->image_data;
-			//var_dump($points);
 			foreach( $points as $key => $p ) {
 				$p['lightdata'] = $this->lightData($p, $rows);
 				if ($p['lightdata']) {
@@ -113,9 +119,10 @@ class ScadaTags extends ScadaBase {
 					}
 				}
 			}
-			var_dump($this->image_display);
+			//var_dump($this->image_display);
 			return $this->image_display;
 		}
+		echo "return []\r\n";
 		return [];
 	}
 	function iconSwitch($color, $icon_type) {

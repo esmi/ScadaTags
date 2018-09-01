@@ -1,12 +1,12 @@
 <?php
 //include_once "iMethod.php";
 class ScadaBase {
-	protected $db;
+	//protected $db;
 	protected $dataClass;
 	protected $equip_field ;
 
-	function __construct( $db, $cls, $equip_name) {
-		$this->db = $db;
+	function __construct( $cls, $equip_name) {
+		//$this->db = $db;
 		$this->setDataClass($cls);
 		$this->setEquipName($equip_name);
 	}
@@ -24,7 +24,9 @@ class ScadaBase {
 	function equipName() {
 		return $this->equip_field;
 	}
-
+	function isEquipName() {
+		return $this->dataClass->isEquipName($this->equip_field);
+	}
 	function get() {
 		//var_dump($this->dataClass);
 		return $this->dataClass->get_scada_data();
