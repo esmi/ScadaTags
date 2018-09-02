@@ -1,5 +1,5 @@
 {
-    "name": "esmi/scadatags",
+    "name": "esmi/scada",
     "description": "A libray to build a array for scadaTagJs/web scada script.",
     "type": "library",
     "license": "MIT",
