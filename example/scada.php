@@ -1,12 +1,6 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-
-//require_once __DIR__ . "/../src/Base.php";
-//require_once __DIR__ . "/../src/Tags.php";
-
-//  require_once "provider.php";
-
 class scada extends \Esmi\Scada\Tags {
 
     private $tag_field_name = 'tag';
@@ -42,8 +36,8 @@ class scada extends \Esmi\Scada\Tags {
 
         ],
         'image_display' => [  // for image display: call parent->imageDisplayTags()
-      		"CH-1"  => [ "left" =>  674, "top" =>  112, "height" => "30", "width"=> '30', "type" => "img", "src" => "images/fan_red.jpg", 'position' =>"absolute" ],
-      		"CH-2"  => [ "left" =>  674, "top" =>  390, "height" => "30", "width"=> '30', "type" => "img", "src" => "images/fan_red.jpg", 'position' =>"absolute" ],
+      	    "CH-1"  => [ "left" =>  674, "top" =>  112, "height" => "30", "width"=> '30', "type" => "img", "src" => "images/fan_red.jpg", 'position' =>"absolute" ],
+      	    "CH-2"  => [ "left" =>  674, "top" =>  390, "height" => "30", "width"=> '30', "type" => "img", "src" => "images/fan_red.jpg", 'position' =>"absolute" ],
 
             "U1043" => [ "left" =>  930, "top" =>   40, "height" => "30", "width"=> '30', "type" => "img", "src" => "images/fan_red.jpg", 'position' =>"absolute" ],
             "U1044" => [ "left" =>  930, "top" =>   97, "height" => "30", "width"=> '30', "type" => "img", "src" => "images/fan_red.jpg", 'position' =>"absolute" ],
@@ -84,61 +78,7 @@ class scada extends \Esmi\Scada\Tags {
 
         parent::__construct( $dataProvider, $this->tags);
 
-	}
-    // function imageDisplayTags() {
-    //     //$rows = $this->getScadaData0();
-    //     $rows = $this->get();
-    //     $points = $this->tags['image_data'];
-    //     //var_dump($points);
-    //     foreach( $points as $key => $p ) {
-    //         $p['lightdata'] = $this->lightData($p, $rows);
-    //         if ($p['lightdata']) {
-    //
-    //             $p['lightcolor'] = $this->lightColor($p['lightdata']);
-    //             $this->tags['image_display'][$key]['lightdata'] = $p['lightdata'];
-    //             $this->tags['image_display'][$key]['lightcolor'] = $p['lightcolor'];
-    //
-    //             $this->tags['image_display'][$key]['src'] = $this->iconSwitch($p['lightcolor'], $p['tags']['icon']);
-    //         }
-    //         else {
-    //             // $p tag not defined in $this->data.
-    //             // or not in $this->getScadaData0()
-    //             // debug for development , here.
-    //             $__debug = true;
-    //             if ($__debug) {
-    //               echo "Warning: \$p[$key] tags(" . $p['tags']['p1'] . ", " . $p['tags']['p2'] .") is not defined in provider::get_scada_data() call by \$this->get()\r\n";
-    //             }
-    //         }
-    //     }
-    //     return $this->tags['image_display'];
-    // }
-
-    // function iconSwitch($color, $iconType) {
-    //     switch( $iconType) {
-    //         case 'GRY_FAN':
-    //             return [ "images/Fan2-g.png", "images/Fan2-r.gif", "images/Fan-y.gif"][$color];
-    //         case 'GRY_MOTOR':
-    //             return [ "images/motor_greenA.jpg", "images/motor_redA.jpg", "images/motor_yellowA.jpg"][$color];
-    //         case 'GY':
-    //             return [ "images/light_green3.jpg", "images/light_yellow3.gif"][$color];
-    //         case 'GRY':
-    //             return [ "images/light_green3.jpg", "images/light_red3.jpg", "images/light_yellow3.jpg"][$color];
-    //         default:
-    //             return [ "images/light_green3.jpg", "images/light_red3.jpg", "images/light_yellow3.jpg"][$color];
-    //     }
-    // }
-
-    // function getTagRow( $tag, $rows) {
-    //   if ($this->isEquipName()) {
-    //     //echo "tag: $tag \r\n";
-    //     foreach ($rows as $r) {
-    //         //tag_field_name
-    //         if ($r[$this->tags['EquipName']] == $tag)
-    //             return $r;
-    //     }
-    //   }
-    //   return [];
-    // }
+	  }
     function lightColor( $data ) {
         return ( $data['p2'] == 1 || $data['p3']  >=1 ) ? 2 : $data['p1'];
     }
@@ -174,26 +114,5 @@ class scada extends \Esmi\Scada\Tags {
 
       return $p3;
     }
-
-    // function scadaTags() {
-    //     $rows1 = parent::displayTags();
-    //     $rows2 = $this->imageDisplayTags();
-    //     $rows =[];
-    //     foreach ( $rows2 as $key =>$r) {
-    //         $r['id'] = $key;
-    //         array_push( $rows, $r);
-    //     }
-    //     foreach ( $rows1 as $key =>$r) {
-    //         $r['id'] = $key;
-    //         array_push( $rows, $r);
-    //     }
-    //
-    //     return $rows;
-    // }
 }
-// $provider = new provider();
-// $scada = new scada($provider);
-// //$scada = new scada(null);
-// $d = $scada->scadaTags();
-//var_dump($d);
 ?>
