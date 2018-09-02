@@ -1,6 +1,8 @@
 <?php
+
+namespace Esmi\Scada;
 //include_once "iMethod.php";
-class ScadaBase {
+class Base {
 	//protected $db;
 	protected $dataClass;
 	protected $equip_field ;

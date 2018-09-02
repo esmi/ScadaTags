@@ -1,6 +1,7 @@
 <?php
+namespace Esmi\Scada;
 
-class ScadaTags extends ScadaBase {
+class Tags extends Base {
 
 	protected $data_tags;       // = $show_map
 	protected $display_tags;	// = $js_map
@@ -17,6 +18,15 @@ class ScadaTags extends ScadaBase {
 	protected $virtual_tags = [];
 
 	function __construct( $dataClass ,$tags) {
+		if (!method_exists($dataClass,'get_scada_data')) {
+			throw new Exception(printf("'%s::get_scada_data()' is not defined. ", get_class($dataClass)));
+		}
+		if (!method_exists($dataClass,'isEquipName')) {
+			throw new Exception(printf("'%s::isEquipName()' is not defined. ", get_class($dataClass)));
+		}
+		if (!method_exists($dataClass,'getEquipName')) {
+			throw new Exception(printf("'%s::getEquipName()' is not defined. ", get_class($dataClass)));
+		}
 
 		parent::__construct( $dataClass, $tags['EquipName']);
 		if (!$this->isEquipName()) {
@@ -112,6 +122,7 @@ class ScadaTags extends ScadaBase {
 			$rows = $this->get();
 			$points = $this->image_data;
 			foreach( $points as $key => $p ) {
+
 				$p['lightdata'] = $this->lightData($p, $rows);
 				if ($p['lightdata']) {
 					$p['lightcolor'] = $this->lightColor($p['lightdata']);
@@ -120,6 +131,7 @@ class ScadaTags extends ScadaBase {
 					$this->image_display[$key]['lightcolor'] = $p['lightcolor'];
 
 					$this->image_display[$key]['src'] = $this->iconSwitch($p['lightcolor'], $p['tags']['icon']);
+
 				}
 				else {
 					// $p tag not defined in $this->data.
@@ -155,7 +167,8 @@ class ScadaTags extends ScadaBase {
 			//echo "tag: $tag \r\n";
 			foreach ($rows as $r) {
 					//tag_field_name
-					if ($r[$this->tags['EquipName']] == $tag)
+					//if ($r[$this->tags['EquipName']] == $tag)
+					if ($r[$this->equipName()] == $tag)
 							return $r;
 			}
 		}

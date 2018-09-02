@@ -2,9 +2,6 @@
     "name": "esmi/scadatags",
     "description": "A libray to build a array for scadaTagJs/web scada script.",
     "type": "library",
-    "require": {
-        "php": "^7.1"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -16,7 +13,7 @@
         "php": "^5.6||^7.0"
     },
     "autoload": {
-        "psr-4": {"Esmi\\": "src/"}
+        "psr-4": {"Esmi\\Scada\\": "src/"}
     }
 
 }

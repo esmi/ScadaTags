@@ -6,6 +6,9 @@ class provider {
   function isEquipName($fd) {
     return $fd == $this->equipName;
   }
+  function getEquipName() {
+    return $this->equipName;
+  }
 
   function get_scada_data() {
     return [

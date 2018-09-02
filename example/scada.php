@@ -2,10 +2,12 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 
-require_once __DIR__ . "/../src/ScadaBase.php";
-require_once __DIR__ . "/../src/ScadaTags.php";
-require_once "provider.php";
-class scada extends scadaTags {
+//require_once __DIR__ . "/../src/Base.php";
+//require_once __DIR__ . "/../src/Tags.php";
+
+//  require_once "provider.php";
+
+class scada extends \Esmi\Scada\Tags {
 
     private $tag_field_name = 'tag';
     private $value_field_name = 'value';
@@ -126,17 +128,17 @@ class scada extends scadaTags {
     //     }
     // }
 
-    function getTagRow( $tag, $rows) {
-      if ($this->isEquipName()) {
-        //echo "tag: $tag \r\n";
-        foreach ($rows as $r) {
-            //tag_field_name
-            if ($r[$this->tags['EquipName']] == $tag)
-                return $r;
-        }
-      }
-      return [];
-    }
+    // function getTagRow( $tag, $rows) {
+    //   if ($this->isEquipName()) {
+    //     //echo "tag: $tag \r\n";
+    //     foreach ($rows as $r) {
+    //         //tag_field_name
+    //         if ($r[$this->tags['EquipName']] == $tag)
+    //             return $r;
+    //     }
+    //   }
+    //   return [];
+    // }
     function lightColor( $data ) {
         return ( $data['p2'] == 1 || $data['p3']  >=1 ) ? 2 : $data['p1'];
     }
