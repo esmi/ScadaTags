@@ -7,7 +7,6 @@ class Tags extends Base {
 	protected $display_tags;	// = $js_map
 
 	protected $image_data = null;
-	//protected $image_tags = null;
 	protected $image_display = null;
 
 	protected $icon_type = null;

@@ -1,14 +1,13 @@
 <?php
-
 namespace Esmi\Scada;
 //include_once "iMethod.php";
 class Base {
-	//protected $db;
+	protected $db;
 	protected $dataClass;
 	protected $equip_field ;
 
-	function __construct( $cls, $equip_name) {
-		//$this->db = $db;
+	function __construct( $db, $cls, $equip_name) {
+		$this->db = $db;
 		$this->setDataClass($cls);
 		$this->setEquipName($equip_name);
 	}

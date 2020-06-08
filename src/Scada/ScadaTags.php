@@ -1,6 +1,7 @@
 <?php
+namespace Esmi\Scada;
 
-class ScadaTags extends ScadaBase {
+class ScadaTags extends Base {
 
 	protected $data_tags;       // = $show_map
 	protected $display_tags;	// = $js_map
@@ -144,6 +145,18 @@ class ScadaTags extends ScadaBase {
 		else {
 			return "tags_'icon_type'_not_defined!";
 		}
+	}
+	function getTagRow( $tag, $rows) {
+		if ($this->isEquipName()) {
+			//echo "tag: $tag \r\n";
+			foreach ($rows as $r) {
+					//tag_field_name
+					//if ($r[$this->tags['EquipName']] == $tag)
+					if ($r[$this->equipName()] == $tag)
+							return $r;
+			}
+		}
+		return [];
 	}
 
 }
